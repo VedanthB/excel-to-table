@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./App.css";
+import './App.css';
 import * as XLSX from "xlsx";
 
 function App() {
@@ -38,7 +38,7 @@ function App() {
   };
 
   return (
-    <div>
+    <div className="app">
       <input
         type="file"
         onChange={(e : any) => {
@@ -47,7 +47,7 @@ function App() {
         }}
       />
 
-      <table className="table container">
+      <table >
         <thead>
           <tr>
             <th scope="col">Item</th>
@@ -56,9 +56,9 @@ function App() {
         </thead>
         <tbody>
           {items.map((d) => (
-            <tr key={d['Table 1']}>
+            <tr key={d.Item}>  
               <th>{d.Item}</th>
-              <td>{d.D}</td>
+              <td>{d.Description}</td>
             </tr>
           ))}
         </tbody>
