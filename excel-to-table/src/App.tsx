@@ -2,6 +2,13 @@ import React, { useState } from "react";
 import './App.css';
 import * as XLSX from "xlsx";
 
+
+// interface Product {
+// 	ID: string
+// 	Name: string
+// }
+
+
 function App() {
 
   const [items, setItems] = useState([]);
@@ -31,7 +38,7 @@ function App() {
     });
 
     promise.then((d : any) => {
-      setItems(d );
+      setItems(d);
 
       console.log(d)
     });
@@ -50,17 +57,21 @@ function App() {
       <table >
         <thead>
           <tr>
-            <th scope="col">Item</th>
+            <th scope="col">Id</th>
+            <th scope="col">Name</th>
             <th scope="col">Description</th>
+            <th scope="col">Price</th>
+            <th scope="col">Brand</th>
+            <th scope="col">Visibility</th>
           </tr>
         </thead>
         <tbody>
-          {items.map((d) => (
-            <tr key={d.Item}>  
-              <th>{d.Item}</th>
-              <td>{d.Description}</td>
+          {/* {items.map((d) => (
+            <tr key={d.Name}>  
+              <th>{d.ID}</th>
+              <td>{d.ID}</td>
             </tr>
-          ))}
+          ))} */}
         </tbody>
       </table>
     </div>
