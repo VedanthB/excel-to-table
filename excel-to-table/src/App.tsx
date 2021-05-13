@@ -3,18 +3,31 @@ import './App.css';
 import * as XLSX from "xlsx";
 
 
-// interface Product {
-// 	ID: string
-// 	Name: string
-// }
+interface ProductDetailed {
+	ID: string
+	seller_id: string
+	vis_id: string // visibile id from sheet
+	Name: string 
+	Description: string
+	Price: number 
+	min_order_qty: number
+	Brand: string
+	additional_info: any
+	img_url: string
+	net_qty_in_stock?: null
+	last_added?: null
+	last_ordered?: null
+	Visibility: number
+	categories?: Array<string>
+}
 
 
 function App() {
 
-  const [items, setItems] = useState([]);
+  const [items, setItems] = useState<Array<ProductDetailed>>([]);
 
   const readExcel = (file : Blob) => {
-    const promise = new Promise((resolve, reject) => {
+    const promise : Promise<Array<ProductDetailed>> = new Promise((resolve, reject) => {
       const fileReader = new FileReader();
       fileReader.readAsArrayBuffer(file);
 
@@ -29,7 +42,7 @@ function App() {
 
         const data = XLSX.utils.sheet_to_json(ws);
 
-        resolve(data);
+        resolve(data as Array<ProductDetailed>);
       };
 
       fileReader.onerror = (error) => {
@@ -37,12 +50,14 @@ function App() {
       };
     });
 
-    promise.then((d : any) => {
+    promise.then((d : Array<ProductDetailed> ) => {
       setItems(d);
 
       console.log(d)
     });
   };
+
+  console.log(items)
 
   return (
     <div className="app">
@@ -66,15 +81,22 @@ function App() {
           </tr>
         </thead>
         <tbody>
-          {/* {items.map((d) => (
-            <tr key={d.Name}>  
+          {items.map((d) => (
+            <tr key={ d.Name }>  
               <th>{d.ID}</th>
-              <td>{d.ID}</td>
+              <td>{d.Name}</td>
+              <td>{d.Description}</td>
+              <td>{d.Price}</td>
+              <td>{d.Brand}</td>
+              <td>{d.Visibility}</td>
             </tr>
-          ))} */}
+          ))} 
         </tbody>
       </table>
+
+    
     </div>
+
   );
 }
 
