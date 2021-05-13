@@ -12,7 +12,14 @@ interface ProductDetailed {
 	Price: number 
 	min_order_qty: number
 	Brand: string
-	additional_info: any
+  Category_1:string
+  Category_2:string
+  Category_3:string
+  Category_4:string
+  Category_5:string
+  Field_1: string
+  Field_2: string
+ 	additional_info: any
 	img_url: string
 	net_qty_in_stock?: null
 	last_added?: null
@@ -78,6 +85,13 @@ function App() {
             <th scope="col">Price</th>
             <th scope="col">Brand</th>
             <th scope="col">Visibility</th>
+            <th scope="col">Category 1</th>
+            <th scope="col">Category 2</th>
+            <th scope="col">Category 3</th>
+            <th scope="col">Category 4</th>
+            <th scope="col">Category 5</th>
+            <th scope="col">Field 1</th>
+            <th scope="col">Field 2</th>
           </tr>
         </thead>
         <tbody>
@@ -89,6 +103,14 @@ function App() {
               <td>{d.Price}</td>
               <td>{d.Brand}</td>
               <td>{d.Visibility}</td>
+              <td>{d?.Category_1}</td>
+              <td>{d?.Category_2}</td>
+              <td>{d?.Category_3}</td>
+              <td>{d?.Category_4}</td>
+              <td>{d?.Category_5}</td>
+              <td>{d?.Field_1}</td>
+              <td>{d?.Field_2}</td>
+
             </tr>
           ))} 
         </tbody>
